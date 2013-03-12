@@ -21,48 +21,46 @@ class Game(object):
 			for j in range(0,width):
 				self.board[(i,j)] = 0
 		
-	def print_board(self):
+	def print_board(self,d):
 		vis = []
 		for i in range(0,self.width):
 			vis.append([])
 			for j in range(0,self.width):
-				vis[i].append(self.board[(i,j)])
+				vis[i].append(d[(i,j)])
 			print vis[i]
-			
+		print ''
+		
 	def seed(self,x,y):
 		self.board[(x,y)] = 1
 			
 	def live(self):
+		step = {}
+		
+		
+	def get_neighbors(self,b):
 		neighbors = {}
 		
-		for i in self.board:
+		for k in b:
 			count = 0
-			if i[0] == 0 and i[1] == 0: #get neighbor count for corners
-				
-			if i[0] != 0 and i[1] != (self.width-1): #get neighbor count for central squares
-				if self.board[(i[0]-1,i[1]-1)] == 1:
-					count +=1
-				if self.board[(i[0]-1,i[1])] == 1:
-					count +=1
-				if self.board[(i[0]-1,i[1]+1)] == 1:
-					count +=1
-				if self.board[(i[0],i[1]-1)] == 1:
-					count +=1
-				if self.board[(i[0],i[1]+1)] == 1:
-					count +=1
-				if self.board[(i[0]+1,i[1]-1)] == 1:
-					count +=1
-				if self.board[(i[0]+1,i[1])] == 1:
-					count +=1
-				if self.board[(i[0]+1,i[1]+1)] == 1:
-					count +=1
-			neighbors[i] = count
+			
+			for x in range(-1,2):
+				for y in range(-1,2):
+					try:
+						if b[((k[0]+x),(k[1]+y))] == 1 and not(x==0 and y==0):
+							count+=1
+					except KeyError:
+						pass
+			neighbors[k] = count
+		
+		return neighbors
 		
 life = Game(10)
-# for i in life.board:
-	# if i[0] % 2 == 0 and i[1] % 2 == 0:
-		# life.board[i] = 1
-life.print_board()
+
+for i in range(0,3):
+	for j in range(0,3):
+		life.seed(i,j)
+life.print_board(life.get_neighbors(life.board))	
+
 
 	
 # while 1:

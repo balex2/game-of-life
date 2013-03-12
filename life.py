@@ -33,10 +33,35 @@ class Game(object):
 		self.board[(x,y)] = 1
 			
 	def live(self):
-		step = []
+		neighbors = {}
 		
-life = Game(20)
-
+		for i in self.board:
+			count = 0
+			if i[0] == 0 and i[1] == 0: #get neighbor count for corners
+				
+			if i[0] != 0 and i[1] != (self.width-1): #get neighbor count for central squares
+				if self.board[(i[0]-1,i[1]-1)] == 1:
+					count +=1
+				if self.board[(i[0]-1,i[1])] == 1:
+					count +=1
+				if self.board[(i[0]-1,i[1]+1)] == 1:
+					count +=1
+				if self.board[(i[0],i[1]-1)] == 1:
+					count +=1
+				if self.board[(i[0],i[1]+1)] == 1:
+					count +=1
+				if self.board[(i[0]+1,i[1]-1)] == 1:
+					count +=1
+				if self.board[(i[0]+1,i[1])] == 1:
+					count +=1
+				if self.board[(i[0]+1,i[1]+1)] == 1:
+					count +=1
+			neighbors[i] = count
+		
+life = Game(10)
+# for i in life.board:
+	# if i[0] % 2 == 0 and i[1] % 2 == 0:
+		# life.board[i] = 1
 life.print_board()
 
 	

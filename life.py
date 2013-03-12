@@ -12,19 +12,31 @@ screen = pygame.display.set_mode(size)
 
 class Game(object):
 
-	board = []
+	board = {}
 	
 	def __init__(self,width):
 		self.width = width
 		
-		for i in range(0,width+1):
-			self.board.append([0]*width)
+		for i in range(0,width):
+			for j in range(0,width):
+				self.board[(i,j)] = 0
 		
 	def print_board(self):
-		for i in self.board:
-			print i
+		vis = []
+		for i in range(0,self.width):
+			vis.append([])
+			for j in range(0,self.width):
+				vis[i].append(self.board[(i,j)])
+			print vis[i]
+			
+	def seed(self,x,y):
+		self.board[(x,y)] = 1
+			
+	def live(self):
+		step = []
 		
 life = Game(20)
+
 life.print_board()
 
 	

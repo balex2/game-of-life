@@ -4,16 +4,16 @@
 # Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
 
-import sys, pygame
+# import sys, pygame
 
-pygame.init()
-pygame.display.set_caption('Game of Life')
-size = width, height = 400, 400
+# pygame.init()
+# pygame.display.set_caption('Game of Life')
+# size = width, height = 400, 400
 
-black = 0, 0, 0
-white = 255, 255, 255
+# black = 0, 0, 0
+# white = 255, 255, 255
 
-screen = pygame.display.set_mode(size)
+# screen = pygame.display.set_mode(size)
 
 
 class Game(object):
@@ -76,13 +76,16 @@ class Game(object):
 life = Game(10)
 
 for i in range(1,4):
-	life.seed(2,i+2)
+	life.seed(3+i,4)
+life.seed(6,3)
+life.seed(5,2)
 	
 life.print_board()
 
-for i in range(0,5):
+for i in range(0,20):
 	life.live()
-	life.print_board()
+
+life.print_board()
 
 
 	

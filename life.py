@@ -91,10 +91,10 @@ class game(object):
 
 		
 life = game(num_squares)
+t=60
 	
 while 1:
-	clock.tick(60)
-	pygame.time.delay(300)
+	clock.tick(t)
 	screen.fill(white)
 	
 	for k in life.get_rects():
@@ -116,6 +116,7 @@ while 1:
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_SPACE:
 				life.start = True
+				t=2
 				
 	if life.start == True:
 		life.live()
